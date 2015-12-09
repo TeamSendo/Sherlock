@@ -400,9 +400,7 @@ var Sherlock = (function() {
           time.hasYear = true;
           return true;
         case "tom":
-          time.setFullYear(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-          time.hasYear = true;
-          return true;
+        case "tmrw":
         case "tomorrow":
           time.setFullYear(now.getFullYear(), now.getMonth(), now.getDate() + 1);
           time.hasYear = true;
@@ -415,20 +413,33 @@ var Sherlock = (function() {
           time.setFullYear(now.getFullYear(), now.getMonth(), now.getDate() + 2);
           time.hasYear = true;
           return true;
+        case "tod":
         case "today":
           time.setFullYear(now.getFullYear(), now.getMonth(), now.getDate());
           time.hasYear = true;
           return true;
-        case "tod":
-          time.setFullYear(now.getFullYear(), now.getMonth(), now.getDate());
-          time.hasYear = true;
+        case "morn":
+        case "morning":
+          times.setHours(8, 0, 0, 0);  // Assume "morning" starts at 8am
           return true;
+        case 'afternoon':
+          times.setHours(14, 0, 0, 0);  // Assume "afternoon" starts at 2pm
+          return true;
+        case "evening":
+          times.setHours(19, 0, 0, 0);  // Assume "evening" starts at 7pm
+        case "tn":
+        case "tonight":
+          time.setFullYear(now.getFullYear(), now.getMonth(), now.getDate());
+          time.setHours(21, 0, 0, 0);  // Assume "tonight" starts at 9pm
+          return true;
+        case "rn":
         case "now":
           time.setFullYear(now.getFullYear(), now.getMonth(), now.getDate());
           time.setHours(now.getHours(), now.getMinutes(), now.getSeconds(), 0);
           time.hasMeridian = true;
           time.hasYear = true;
           return true;
+        case "yest":
         case "yesterday":
           time.setFullYear(now.getFullYear(), now.getMonth(), now.getDate() - 1);
           time.hasYear = true;
